@@ -5,8 +5,9 @@ import { type Card, createDeck, shuffle } from "@/lib/deck"
 import { CardBack } from "@/components/card-back"
 import { CardFace } from "@/components/card-face"
 
-// bounded by both viewport width and height so the whole screen always fits without scrolling
-const CARD_SIZE = "w-[clamp(8rem,min(36vw,42vh),20rem)]"
+// bounded by both viewport width and height so the whole screen always fits without scrolling;
+// the wide vw share is what lets the card fill narrow mobile screens instead of floating tiny in the middle
+const CARD_SIZE = "w-[clamp(8rem,min(76vw,42vh),20rem)]"
 
 export function PantherDeck() {
   const [drawn, setDrawn] = useState<Card | null>(null)
