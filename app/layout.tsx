@@ -15,10 +15,9 @@ const geist = Geist({
 })
 
 export const metadata: Metadata = {
-  title: 'Panther Deck — Baraja y saca una carta',
+  title: 'Mirian Agu — Baraja y saca una carta',
   description:
     'Baraja el mazo de la pantera dorada y saca una carta al azar.',
-  generator: 'v0.app',
   icons: {
     icon: [
       {
