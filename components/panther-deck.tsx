@@ -14,11 +14,23 @@ export function PantherDeck() {
   const [flipped, setFlipped] = useState(false)
   const [isShuffling, setIsShuffling] = useState(false)
   const timers = useRef<ReturnType<typeof setTimeout>[]>([])
+  const preloaded = useRef<HTMLImageElement[]>([])
 
   useEffect(() => {
     return () => {
       timers.current.forEach(clearTimeout)
     }
+  }, [])
+
+  useEffect(() => {
+    // warm the browser cache for the whole deck up front, at low priority, so drawing a card
+    // never has to wait on its ~100-150KB image over the network
+    preloaded.current = createDeck().map(({ image }) => {
+      const img = new Image()
+      ;(img as HTMLImageElement & { fetchPriority?: string }).fetchPriority = "low"
+      img.src = image
+      return img
+    })
   }, [])
 
   const handleDraw = useCallback(() => {
